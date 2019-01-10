@@ -264,11 +264,11 @@ current buffer's project root."
                    (equal root buf-root))))
              (buffer-list))))
 
-(defun edts-project-in-each-buffer (fn &optional root)
+(defun edts-project-in-each-buffer (fun &optional root)
   "Evaluate FN in each buffer in the project ROOT. ROOT defaults to the current
 buffer's project root."
   (-map (lambda (buf)
-          (with-current-buffer buf (funcall fn)))
+          (with-current-buffer buf (funcall fun)))
         (edts-project-buffers root)))
 
 ;;;;;;;;;;;;;;;;;;;;

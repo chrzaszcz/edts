@@ -146,8 +146,8 @@ parsed response as the single argument"
            (edts-code--set-issues 'edts-xref (list 'error errs))
            (edts-face-update-buffer-mode-line (edts-code-buffer-status))
            (when errs
-             (edts-code-display-error-overlays 'edts-xref errs))))
-       (edts-project-root)))))
+             (edts-code-display-error-overlays 'edts-xref errs)))))
+       edts-project-root)))
 
 (defun edts-xref-apply-whitelists (errs)
   "ERRS is an alist of (FILE . FILE-ERRORS) where FILE is a filename and
