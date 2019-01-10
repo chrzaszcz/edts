@@ -583,9 +583,17 @@ filename_to_outdir(File) ->
   EbinDir = filename:join([DirName, "..", "ebin"]),
   case filelib:is_dir(EbinDir) of
     true  -> EbinDir;
-    false -> DirName
+    false -> filename_to_rebar3_outdir(File)
   end.
 
+filename_to_rebar3_outdir(File) ->
+    DirName = filename:dirname(File),
+    {ok, AppName} = application:get_env(edts, project_name),
+    EbinDir = filename:join([DirName, "..", "_build", "default", "lib", AppName, "ebin"]),
+    case filelib:is_dir(EbinDir) of
+        true  -> EbinDir;
+        false -> DirName
+    end.
 
 %%------------------------------------------------------------------------------
 %% @equiv get_module_source(M, M:module_info()).
